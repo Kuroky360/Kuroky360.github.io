@@ -25,10 +25,10 @@
     <div class="masthead">
         <ul class="nav nav-pills pull-right">
             <li ng-class="{active:state.name==='home'}"><a ui-sref="home">Home</a></li>
-            <li ng-class="{active:state.name==='about'}"><a ui-sref="home">About</a></li>
+            <li ng-class="{active:state.name==='about'}"><a ui-sref="about" style="cursor: pointer">About</a></li>
             <li ng-class="{active:state.name==='contact'}"><a ui-sref="contact" style="cursor: pointer">Contact</a></li>
         </ul>
-        <h3 class="muted"><a href="">Kuroky360</a></h3>
+        <h3 class="muted"><a ui-sref="home">Kuroky360</a></h3>
     </div>
     <hr>
     <ui-view></ui-view>
@@ -43,6 +43,8 @@
                     templateUrl:'html/home.html'
                 }).state('contact',{
                     templateUrl:'html/contact.html'
+                }).state('about',{
+                    templateUrl:'html/about.html'
                 });
                 $urlRouterProvider.otherwise('/');
             }])
