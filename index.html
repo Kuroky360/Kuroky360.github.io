@@ -31,7 +31,11 @@
 <script src="js/angular-ui-router.min.js"></script>
 <script>
     angular.module('dvizer',['ui.router'])
-            .config(['$stateProvider','$urlRouterProvider',function ($stateProvider,$urlRouterProvider) {
+            .config(['$stateProvider','$urlRouterProvider','$locationProvider',function ($stateProvider,$urlRouterProvider,$locationProvider) {
+                $locationProvider.html5Mode({
+                    enabled:true,
+                    requireBase:false
+                });
                 $stateProvider.state('home',{
                     url:'/',
                     templateUrl:'html/home.html'
