@@ -6,7 +6,7 @@ angular.module('dvizer').service('electionService', ['$http', '$log', function (
     this.intimacyImageUrls = [];
 
     this.fetchIntimacyData = function () {
-        return $http.get('data/data3_forceAtlas2Layout.json').then(function (json) {
+        return $http.get('lab/election/data/data3_forceAtlas2Layout.json').then(function (json) {
             self.intimacyImageUrls = _extractImageUrl(json.data);
             self.intimacyData = json.data;
         });
