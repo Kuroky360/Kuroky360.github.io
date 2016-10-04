@@ -46,6 +46,7 @@ angular.module('dvizer').service('electionService', ['$http', '$log', function (
             if(noRepeat[item.label]) item.hidden=false; else item.hidden=true;
             item.color = '#908BF7';//#fff,0027cc,0b0085,0070c2
         });
+
         return urls;
     }
 }]);
