@@ -35,14 +35,16 @@ angular.module('dvizer').service('electionService', ['$http', '$log', function (
                 item.url = null;
             }
         });
-        nodes.forEach(function (item) {
-            item.hidden = false;
-            item.color = '#908BF7';//#fff,0027cc,0b0085,0070c2
-        });
-
+        var noRepeat={};
         edges.forEach(function (item) {
             item.color = '#908BF7';//908BF7,0027cc,0b0085,FE6A37
             item.hidden = false;
+            noRepeat[item.source]=true;
+            noRepeat[item.target]=true;
+        });
+        nodes.forEach(function (item) {
+            if(noRepeat[item.label]) item.hidden=false; else item.hidden=true;
+            item.color = '#908BF7';//#fff,0027cc,0b0085,0070c2
         });
         return urls;
     }
