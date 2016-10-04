@@ -5,10 +5,10 @@
 (function (angular) {
     angular.module('dvizer', ['ui.router', 'oc.lazyLoad','dvizer.config'])
         .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
-            $locationProvider.html5Mode({
+            /*$locationProvider.html5Mode({
                 enabled: true,
                 requireBase: false
-            });
+            });*/
             $stateProvider.state('home', {
                 url: '/',
                 templateUrl: 'html/home.html'
