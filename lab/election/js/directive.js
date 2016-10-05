@@ -211,6 +211,7 @@ angular.module('dvizer').directive('electionViz', ['$timeout',function ($timeout
                         }
                     } else {
                  // node for neighbors of overNode
+                        n.active=true;
                         n.color = n.attributes['grey'] ? n.attributes['true_color'] : n.color;
                         n.attributes['grey'] = 0;
                     }
@@ -234,6 +235,7 @@ angular.module('dvizer').directive('electionViz', ['$timeout',function ($timeout
                 nodes.forEach(function (n) {
                     n.color = n.attributes['grey'] ? n.attributes['true_color'] : n.color;
                     n.attributes['grey'] = 0;
+                    n.active=false;
                  });
                 sigmaInstance.refresh();
             }
