@@ -9,6 +9,7 @@
                 enabled: true,
                 requireBase: false
             });*/
+            $locationProvider.hashPrefix('!');
             $stateProvider.state('home', {
                 url: '/',
                 templateUrl: 'html/home.html'
