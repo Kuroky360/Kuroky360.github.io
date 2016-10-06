@@ -27,6 +27,9 @@
                         return $ocLazyLoad.load($config.election.js.concat($config.election.css));
                     }]
                 }
+            }).state('blog',{
+                url: '/blog',
+                templateUrl: 'blog/template.html'
             });
             $urlRouterProvider.otherwise('/');
         }])
