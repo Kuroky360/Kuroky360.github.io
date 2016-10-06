@@ -3,7 +3,7 @@
  * Created by Kuroky360 on 10/3/16.
  */
 (function (angular) {
-    angular.module('dvizer', ['ui.router', 'oc.lazyLoad','dvizer.config'])
+    angular.module('dvizer', ['ui.router', 'oc.lazyLoad','dvizer.config','angularUtils.directives.dirDisqus'])
         .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
             /*$locationProvider.html5Mode({
                 enabled: true,
@@ -30,6 +30,13 @@
                 }
             }).state('blog',{
                 url: '/blog',
+                controller:function($scope){
+                    $scope.disqusConfig={
+                        disqus_shortname: 'www-dvizer-com',
+                        disqus_identifier: ''+new Date(),
+                        disqus_url: 'http://www.dvizer.com'
+                    };
+                },
                 templateUrl: 'blog/template.html'
             });
             $urlRouterProvider.otherwise('/');
