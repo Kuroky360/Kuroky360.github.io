@@ -9,10 +9,9 @@ var mediator=function(){
 
   var publish=function(channel){
     if(!mediator.channels[channel]) return false;
-    var args=Array.prototype.slice(arguments,1);
+    var args=Array.prototype.slice.call(arguments,1);
     for(var i=0,ii=mediator.channels[channel].length;i<ii;i++){
       var subscription=mediator.channels[channel][i];
-      var callback=subscription.callback;
       subscription.callback.apply(subscription.context,args);
     }
     return this;
