@@ -13,7 +13,7 @@ var mediator=function(){
     for(var i=0,ii=mediator.channels[channel].length;i<ii;i++){
       var subscription=mediator.channels[channel][i];
       var callback=subscription.callback;
-      callback.apply(subscription.context,args);
+      subscription.callback.apply(subscription.context,args);
     }
     return this;
   };
