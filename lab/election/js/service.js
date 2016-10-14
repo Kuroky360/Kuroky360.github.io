@@ -19,7 +19,7 @@ angular.module('dvizer').service('electionService', ['$http', '$log', function (
             nodes = data.nodes,
             edges = data.edges;
         
-        prefix = 'lab/election/compressedAvatar/';
+        prefix = 'lab/election/avatar/';
         nodes.forEach(function (item) {
             // process image
             if (item.attributes.Image) {
