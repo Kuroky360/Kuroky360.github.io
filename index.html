@@ -16,7 +16,7 @@
 
 <div class="container-narrow" ng-controller="MainCtrl">
 
-    <div class="masthead">
+    <div class="masthead" ng-if="state!=='election'">
         <ul class="nav nav-pills pull-right">
             <li ng-class="{active:state.name==='home'}"><a ui-sref="home">Home</a></li>
             <li ng-class="{active:state.name==='about'}"><a ui-sref="about" style="cursor: pointer">About</a></li>
