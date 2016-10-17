@@ -22,7 +22,7 @@ angular.module('dvizer').directive('electionViz', ['$timeout',function ($timeout
                 event.preventDefault();
             });
             sigma.utils.pkg('sigma.canvas.nodes');
-            sigma.canvas.nodes.image = (function () {
+            sigma.canvas.nodes.image = sigma.canvas.nodes.image||(function () {
                 var _cache = {},
                     _loading = {},
                     _callbacks = {};
