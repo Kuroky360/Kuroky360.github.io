@@ -24,7 +24,7 @@ angular.module('dvizer').service('electionService', ['$http', '$log', function (
             // process image
             if (item.attributes.Image) {
                 if (angular.isString(item.attributes.Image)) item.attributes.Image = item.attributes.Image.trim();
-                item.attributes.Image=item.attributes.Image.replace('.','-min.');
+                item.attributes.Image=item.attributes.Image.replace('.','-min-compressed.');
                 item.type = 'image';
                 item.url = prefix + item.attributes.Image;
                 if (!noRepeat[item.attributes.Image]) {
