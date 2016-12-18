@@ -6,7 +6,11 @@ angular.module('dvizer').controller('timelineCtrl',['$scope','dataService',funct
         fetchData:fetchDataByTimeBin,
         brushSelection:angular.noop
     };
-
+    $scope.disqusConfig={
+        disqus_shortname: 'www-dvizer-com',
+        disqus_identifier: ''+new Date(),
+        disqus_url: 'http://www.dvizer.com'
+    };
     function fetchDataByTimeBin(bin) {
         return dataService.get(bin);
     }
