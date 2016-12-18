@@ -23,13 +23,13 @@
             },
             timeline:{
                 js:[
-                    dir+'d3-timeline/js/d3-palantir-timeline.js',
-                    dir+'d3-timeline/js/controller.js',
-                    dir+'d3-timeline/js/directive.js',
-                    dir+'d3-timeline/js/service.js'
+                    dir+'timeline/js/d3-palantir-timeline.js',
+                    dir+'timeline/js/controller.js',
+                    dir+'timeline/js/directive.js',
+                    dir+'timeline/js/service.js'
                 ],
                 css:[
-                    dir+'d3-timeline/css/timeline.css'
+                    dir+'timeline/css/timeline.css'
                 ]
             }
         })

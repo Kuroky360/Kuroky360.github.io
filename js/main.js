@@ -25,8 +25,8 @@
                     }]
                 }
             }).state('timeline', {
-                url: '/lab/d3-timeline',
-                templateUrl: 'lab/d3-timeline/html/index.html',
+                url: '/lab/timeline',
+                templateUrl: 'lab/timeline/html/index.html',
                 controller: 'timelineCtrl',
                 resolve: {
                     deps: ['$ocLazyLoad', '$config', function ($ocLazyLoad, $config) {
