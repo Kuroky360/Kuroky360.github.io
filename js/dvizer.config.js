@@ -6,8 +6,8 @@
     angular.module('dvizer.config',[],['$provide',function($provide){
         var dir='lab/';
         $provide.value('$config',{
-            "election":{
-                "js":[
+            election:{
+                js:[
                     dir+'election/plugins/sigma.plugins.dragNodes/sigma.plugins.dragNodes.min.js',
                     dir+'election/plugins/sigma.plugins.filter/sigma.plugins.filter.min.js',
                     dir+'election/plugins/sigma.renderers.edgeLabels/sigma.renderers.edgeLabels.min.js',
@@ -17,8 +17,19 @@
                     dir+'election/js/directive.js',
                     dir+'election/js/service.js'
                 ],
-                "css":[
+                css:[
                     dir+'election/css/election.css'
+                ]
+            },
+            timeline:{
+                js:[
+                    dir+'timeline/js/d3-palantir-timeline.js',
+                    dir+'timeline/js/controller.js',
+                    dir+'timeline/js/directive.js',
+                    dir+'timeline/js/service.js'
+                ],
+                css:[
+                    dir+'timeline/css/timeline.css'
                 ]
             }
         })

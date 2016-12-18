@@ -5,10 +5,6 @@
 (function (angular) {
     angular.module('dvizer', ['ui.router', 'oc.lazyLoad','dvizer.config','angularUtils.directives.dirDisqus'])
         .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
-            /*$locationProvider.html5Mode({
-                enabled: true,
-                requireBase: false
-            });*/
             $locationProvider.hashPrefix('!');
             $stateProvider.state('home', {
                 url: '/',
@@ -26,6 +22,15 @@
                 resolve: {
                     deps: ['$ocLazyLoad','$config',function($ocLazyLoad,$config){
                         return $ocLazyLoad.load($config.election.js.concat($config.election.css));
+                    }]
+                }
+            }).state('timeline', {
+                url: '/lab/timeline',
+                templateUrl: 'lab/timeline/html/index.html',
+                controller: 'timelineCtrl',
+                resolve: {
+                    deps: ['$ocLazyLoad', '$config', function ($ocLazyLoad, $config) {
+                        return $ocLazyLoad.load($config.timeline.js.concat($config.timeline.css));
                     }]
                 }
             }).state('blog',{
