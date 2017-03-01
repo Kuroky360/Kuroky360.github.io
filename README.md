@@ -1,2 +1,2 @@
-## dvizer.com ##
-This is my [website](http://www.dvizer.com).
+## infoviz.cn ##
+This is my [website](http://www.infoviz.cn).
