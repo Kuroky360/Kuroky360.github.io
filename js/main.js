@@ -4,7 +4,8 @@
  */
 (function (angular) {
     angular.module('dvizer', ['ui.router', 'oc.lazyLoad','dvizer.config','angularUtils.directives.dirDisqus'])
-        .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
+        .config(['$stateProvider', '$urlRouterProvider', '$locationProvider','$compileProvider', function ($stateProvider, $urlRouterProvider, $locationProvider,$compileProvider) {
+            $compileProvider.debugInfoEnabled(false);
             $locationProvider.hashPrefix('!');
             $stateProvider.state('home', {
                 url: '/',
