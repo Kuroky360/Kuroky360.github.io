@@ -53,6 +53,6 @@
             });
         }]);
     angular.element(document).ready(function () {
-        angular.bootstrap(document, ['dvizer'])
+        angular.bootstrap(document, ['dvizer'],{strictDi:true});
     });
 })(angular);
