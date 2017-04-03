@@ -1,4 +1,4 @@
-angular.module('dvizer').directive('electionViz', ['$timeout',function ($timeout) {
+angular.module('dvizer').directive('electionViz', ['$timeout','$q',function ($timeout,$q) {
     return {
         restrict: 'E',
         replace: true,
@@ -16,16 +16,13 @@ angular.module('dvizer').directive('electionViz', ['$timeout',function ($timeout
             g = {
                     nodes: [],
                     edges: []
-                },
-            loaded = 0;
+                };
             element.parent().on('contextmenu', function (event) {
                 event.preventDefault();
             });
             sigma.utils.pkg('sigma.canvas.nodes');
             sigma.canvas.nodes.image = sigma.canvas.nodes.image||(function () {
-                var _cache = {},
-                    _loading = {},
-                    _callbacks = {};
+                var _cache = {};
                 // Return the renderer itself:
                 var renderer = function (node, context, settings) {
                     var args = arguments,
@@ -86,27 +83,15 @@ angular.module('dvizer').directive('electionViz', ['$timeout',function ($timeout
 
                 // Let's add a public method to cache images, to make it possible to
                 // preload images before the initial rendering:
-                renderer.cache = function (url, callback) {
-                    if (callback)
-                        _callbacks[url] = callback;
-
-                    if (_loading[url])
-                        return;
-
+                renderer.cache = function (url) {
+                    var deferred=$q.defer();
                     var img = new Image();
-
                     img.onload = function () {
-                        _loading[url] = false;
                         _cache[url] = img;
-
-                        if (_callbacks[url]) {
-                            _callbacks[url].call(this, img);
-                            delete _callbacks[url];
-                        }
+                        deferred.resolve();
                     };
-
-                    _loading[url] = true;
                     img.src = url;
+                    return deferred.promise;
                 };
 
                 return renderer;
@@ -158,19 +143,16 @@ angular.module('dvizer').directive('electionViz', ['$timeout',function ($timeout
             // Initialize the Filter API
             new sigma.plugins.filter(sigmaInstance);
 
-            scope.$watch("urls", function (newVal, oldVal) {
-                loaded = 0;
+            scope.$watch("urls", function () {
                 // Then, wait for all images to be loaded before instanciating sigma:
-                scope.urls.forEach(function (url) {
-                    sigma.canvas.nodes.image.cache(
-                        url,
-                        function () {
-                            if (++loaded === scope.urls.length) {
-                                sigmaInstance.graph.clear();
-                                sigmaInstance.graph.read(scope.graph);
-                                init(sigmaInstance);
-                            }
-                        });
+                var promises=[];
+                scope.urls.forEach(function(url){
+                    promises.push(sigma.canvas.nodes.image.cache(url))
+                });
+                $q.all(promises).then(function(){
+                    sigmaInstance.graph.clear();
+                    sigmaInstance.graph.read(scope.graph);
+                    init(sigmaInstance);
                 });
             });
 
