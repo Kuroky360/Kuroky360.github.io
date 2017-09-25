@@ -6,7 +6,7 @@ angular.module('dvizer').service('electionService', ['$http', '$log', function (
     this.intimacyImageUrls = [];
 
     this.fetchIntimacyData = function () {
-        return $http.get('lab/election/data/data3_forceAtlas2Layout.json').then(function (json) {
+        return $http.get('lab/election/data/data.json').then(function (json) {
             self.intimacyImageUrls = _extractImageUrl(json.data);
             self.intimacyData = json.data;
         });
@@ -17,26 +17,27 @@ angular.module('dvizer').service('electionService', ['$http', '$log', function (
             prefix,
             noRepeat = {},
             nodes = data.nodes,
-            edges = data.edges;
-        
+            edges = data.edges,
+            names;
+
         prefix = 'lab/election/avatar/';
+        names=['9B8.jpg','ABE1.jpg','Aemon.jpg','Arya.jpg','B97C.jpg','Bran.jpg','Catelyn.jpg','Cersei.jpg','Daenerys.jpg','DB9.jpg','Drogo.jpg','Eddard.jpg','Jaime.jpg','Jeor.jpg','Jon.jpg','Jorah.jpg','Renly.jpg','Robb.jpg','Robert.jpg','Samwell.jpg','Sansa.jpg','Stannis.jpg','Tyrion.jpg','Tywin.jpg','Viserys.jpg'];
+        urls=names.map(function(item){
+            return prefix+item;
+        });
         nodes.forEach(function (item) {
             // process image
             if (item.attributes.Image) {
-                if (angular.isString(item.attributes.Image)) item.attributes.Image = item.attributes.Image.trim();
-                item.attributes.Image=item.attributes.Image.replace('.','-min-compressed.');
                 item.type = 'image';
-                item.url = prefix + item.attributes.Image;
-                if (!noRepeat[item.attributes.Image]) {
-                    noRepeat[item.attributes.Image] = true;
-                    urls.push(prefix + item.attributes.Image);
-                }
+                var random=Math.floor(Math.random()*25);
+                item.url = urls[random];
+                item._label=names[random].replace(/\.jpg/,'');
             } else {
                 item.type = 'def';
                 item.url = null;
+                item._label='noone';
             }
         });
-        var noRepeat={};
         edges.forEach(function (item) {
             item.color = '#908BF7';//908BF7,0027cc,0b0085,FE6A37
             item.hidden = false;
