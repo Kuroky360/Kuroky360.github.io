@@ -116,6 +116,7 @@ angular.module('dvizer').directive('electionViz', ['$timeout','$q',function ($ti
                     hideEdgesOnMove: false,
                     zoomingRatio: 2.8,
                     zoomMin: 0.01,
+                    zoomMax: 0.3,
                     mouseInertiaDuration: 100,
                     mouseZoomDuration: 200,
                     borderSize: 0,
